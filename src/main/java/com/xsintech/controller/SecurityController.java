@@ -20,4 +20,5 @@ public class SecurityController {
 	public String labour() {
 		return "app/labour_contract";
 	}
+	
 }
