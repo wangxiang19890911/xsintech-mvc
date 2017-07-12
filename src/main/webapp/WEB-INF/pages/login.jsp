@@ -22,7 +22,7 @@
 					<strong class="">   登陆 </strong>  
 				</div>
 				<div class="panel-body">
-					<form role="form" action="${pageContext.request.contextPath}/secur/login">
+					<form role="form" action="${pageContext.request.contextPath}/secure/login">
 						<div class="form-group input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 							<input type="text" id="username" class="form-control" placeholder="请输入用户名" />

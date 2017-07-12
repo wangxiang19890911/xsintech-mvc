@@ -23,7 +23,7 @@
 	    <div class="col-md-offset-8 col-sm-offset-7 col-md-1 col-sm-2">
 	        <ul class="nav navbar-nav">
 	            <li class="dropdown">
-	                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background-color:black;">
 	                    <span class="input-group-addon"><i class="glyphicon glyphicon-user">&nbsp;user</i> </span>
 	                </a>
 	                <ul class="dropdown-menu">
