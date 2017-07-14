@@ -59,7 +59,7 @@
             </div>
             <div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 context">
 			   	<div class="row"><h2 class="pull-left">劳动合同作成</h2></div>
-			   	<div class="row">
+			   	<!-- <div class="row">
 			   		<a href="#" class="pull-left button button-glow button-rounded button-raised button-primary button-small">新建</a>
 			   		<a href="#" class="pull-left button button-glow button-rounded button-raised button-caution button-small">删除</a>
 			   	</div>
@@ -77,7 +77,11 @@
 						</tr>
 					</table>
 				</div>
-            </div>
+            </div> -->
+             项目名称:<input type="text" />
+             委托方（甲方）:<input type="text" />
+             受托方（乙方）:<input type="text" />
+             <input type="button" value="合同作成" />
 		</div>
 	</div>
 </div>
