@@ -1,6 +1,6 @@
 package com.xsintech.model;
 
-public class EventDetail {
+public class AnswerCountInfo {
 
 	private Integer subId;
 

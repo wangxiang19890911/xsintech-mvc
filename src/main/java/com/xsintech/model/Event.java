@@ -10,11 +10,21 @@ public class Event {
 
 	private String eventComment;
 
+	private String userId;
+
 	private Integer answers;
 
-	private List<EventDetail> details;
+	private List<AnswerCountInfo> details;
 
 	private String createdDate;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	public String getCreatedDate() {
 		return createdDate;
@@ -56,11 +66,11 @@ public class Event {
 		this.answers = answers;
 	}
 
-	public List<EventDetail> getDetails() {
+	public List<AnswerCountInfo> getDetails() {
 		return details;
 	}
 
-	public void setDetails(List<EventDetail> details) {
+	public void setDetails(List<AnswerCountInfo> details) {
 		this.details = details;
 	}
 

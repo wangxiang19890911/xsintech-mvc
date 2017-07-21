@@ -25,15 +25,18 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.client.ClientProtocolException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xsintech.model.AnswerCountInfo;
+import com.xsintech.model.AnswerDetailInfo;
+import com.xsintech.model.AnswerInfo;
 import com.xsintech.model.Event;
-import com.xsintech.model.EventDetail;
-import com.xsintech.model.SubDetail;
+import com.xsintech.service.WechatService;
 import com.xsintech.util.DateUtils;
 import com.xsintech.util.PasswordUtil;
 
@@ -41,6 +44,9 @@ import net.sf.json.JSONArray;
 
 @Controller
 public class WechatController {
+
+	@Autowired
+	private WechatService wechatService;
 
 	/**
 	 * login
@@ -72,7 +78,6 @@ public class WechatController {
 
 				Map<String, Object> map = JSONObject.parseObject(jsonBuffer.toString());
 				System.out.println("openid = " + String.valueOf(map.get("openid")));
-				// System.out.println(map.get("session_key").toString());
 				if (null != map.get("openid")) {
 					openid = PasswordUtil.sha256hash(map.get("openid").toString().getBytes("Windows-31J"), "xsintech",
 							1000);
@@ -111,11 +116,13 @@ public class WechatController {
 	@RequestMapping(value = "/wechat/detail", method = RequestMethod.GET)
 	@ResponseBody
 	public Event getDetail(Integer id) {
+//		List<EventAnswerInfo> events = this.wechatService.getAnswerCountInfoByEventId(id);
+
 		// TODO test data
 		Event event = new Event();
-		List<EventDetail> events = new ArrayList<EventDetail>();
+		List<AnswerCountInfo> events = new ArrayList<AnswerCountInfo>();
 
-		EventDetail e = new EventDetail();
+		AnswerCountInfo e = new AnswerCountInfo();
 		e.setSubId(101);
 		e.setDate("2017/07/07(五) 19:00 ~ 22:30");
 		e.setAttend(3);
@@ -124,7 +131,7 @@ public class WechatController {
 		e.setStatus(1);
 		events.add(e);
 
-		e = new EventDetail();
+		e = new AnswerCountInfo();
 		e.setSubId(102);
 		e.setDate("2017/07/08(六) 17:00 ~ 20:00");
 		e.setAttend(4);
@@ -133,7 +140,7 @@ public class WechatController {
 		e.setStatus(0);
 		events.add(e);
 
-		e = new EventDetail();
+		e = new AnswerCountInfo();
 		e.setSubId(103);
 		e.setDate("2017/07/09(日) 17:00 ~ 20:00");
 		e.setAttend(5);
@@ -142,7 +149,7 @@ public class WechatController {
 		e.setStatus(2);
 		events.add(e);
 
-		e = new EventDetail();
+		e = new AnswerCountInfo();
 		e.setSubId(104);
 		e.setDate("2017/07/10(一) 17:00 ~ 20:00");
 		e.setAttend(5);
@@ -156,7 +163,7 @@ public class WechatController {
 		event.setEventComment("吃饭唱歌喝酒吧！去哪？");
 		event.setAnswers(7);
 		event.setDetails(events);
-		
+
 		return event;
 	}
 
@@ -168,6 +175,8 @@ public class WechatController {
 	@RequestMapping(value = "/wechat/self", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Event> myEvent(String userId) {
+//		List<Event> myEvents = this.wechatService.getUserEventListByUserId(userId);
+		
 		List<Event> list = new ArrayList<Event>();
 
 		// TODO test data
@@ -177,21 +186,21 @@ public class WechatController {
 		event.setAnswers(8);
 		event.setCreatedDate("2017/07/01 15:30:15");
 		list.add(event);
-		
+
 		event = new Event();
 		event.setId(10011);
 		event.setEventName("今天周五了大家去聚会吧2");
 		event.setAnswers(11);
 		event.setCreatedDate("2017/07/01 15:30:15");
 		list.add(event);
-		
+
 		event = new Event();
 		event.setId(10012);
 		event.setEventName("今天周五了大家去聚会吧3今天周五了大家去聚会吧3今天周五了大家去聚会吧");
 		event.setAnswers(3);
 		event.setCreatedDate("2017/07/01 15:30:15");
 		list.add(event);
-		
+
 		return list;
 	}
 
@@ -203,35 +212,33 @@ public class WechatController {
 	 */
 	@RequestMapping(value = "/wechat/sub_detail", method = RequestMethod.GET)
 	@ResponseBody
-	public List<SubDetail> getSubDetail(Integer id, Integer subId, Integer status) {
+	public List<AnswerInfo> getSubDetail(Integer id, Integer subId) {
+//		List<SubDetail> subDetails = this.wechatService.getSubDetail(id, subId, status);
 
 		// TODO test data
-		List<SubDetail> subDetails = new ArrayList<SubDetail>();
-		SubDetail subDetail = new SubDetail();
-		subDetail.setStatus(101);
-		subDetail.setUserId("u11111");
-		subDetail.setUserName("小李");
-		subDetail.setAnsweredDate("2017/07/01 12:04:31");
-		subDetail.setStatus(1);
-		subDetail.setComment("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-		subDetails.add(subDetail);
-
-		subDetail = new SubDetail();
-		subDetail.setStatus(101);
-		subDetail.setUserId("u22222");
-		subDetail.setUserName("王笑笑");
-		subDetail.setAnsweredDate("2017/07/02 09:35:02");
-		subDetail.setStatus(1);
-		subDetails.add(subDetail);
-
-		subDetail = new SubDetail();
-		subDetail.setStatus(101);
-		subDetail.setUserId("u33333");
-		subDetail.setUserName("李雷");
-		subDetail.setAnsweredDate("2017/07/02 19:08:54");
-		subDetail.setStatus(2);
-		subDetails.add(subDetail);
-		return subDetails;
+		List<AnswerInfo> answerInfos = new ArrayList<AnswerInfo>();
+		AnswerInfo answerInfo = new AnswerInfo();
+		answerInfo.setAnswerName("小李1");
+		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
+		answerInfo.setAnswerDate("2017/07/01 11:11:11");
+		answerInfo.setStatus(1);
+		answerInfos.add(answerInfo);
+		
+		answerInfo = new AnswerInfo();
+		answerInfo.setAnswerName("小李2");
+		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
+		answerInfo.setAnswerDate("2017/07/01 11:11:11");
+		answerInfo.setStatus(1);
+		answerInfos.add(answerInfo);
+		
+		answerInfo = new AnswerInfo();
+		answerInfo.setAnswerName("小李3");
+		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
+		answerInfo.setAnswerDate("2017/07/01 11:11:11");
+		answerInfo.setStatus(1);
+		answerInfos.add(answerInfo);
+		
+		return answerInfos;
 	}
 
 	/**
@@ -243,33 +250,36 @@ public class WechatController {
 	 */
 	@RequestMapping(value = "/wechat/save", method = RequestMethod.POST)
 	@ResponseBody
-	public Integer login(String name, String datas, String comment, String userId) {
-		String[] data = datas.split("\n");
+	public Integer saveEvent(String name, String datas, String comment, String userId) {
+//		Integer eventId = this.wechatService.save(name, datas, comment, userId);
 
-		// TODO
+		// TODO return id
 		return 10010;
 	}
 
+	/**
+	 * answer
+	 * 
+	 * @param json
+	 * @return
+	 */
 	@RequestMapping(value = "/wechat/answer", method = RequestMethod.POST)
 	@ResponseBody
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public boolean answer(String json) {
 		Map<String, Object> map = (Map<String, Object>) JSONObject.parse(json);
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		for (Object obj : map.entrySet()){
-			if ("details".equals(((Map.Entry)obj).getKey())) {
-				JSONArray jsonArray = JSONArray.fromObject(((Map.Entry)obj).getValue().toString());
-				List<EventDetail> details = (List<EventDetail>)JSONArray.toCollection(jsonArray, EventDetail.class);
+		for (Object obj : map.entrySet()) {
+			if ("details".equals(((Map.Entry) obj).getKey())) {
+				JSONArray jsonArray = JSONArray.fromObject(((Map.Entry) obj).getValue().toString());
+				List<AnswerDetailInfo> details = (List<AnswerDetailInfo>) JSONArray.toCollection(jsonArray, AnswerDetailInfo.class);
 				paramMap.put("details", details);
 			} else {
-				paramMap.put(((Map.Entry)obj).getKey().toString(), ((Map.Entry)obj).getValue().toString());
+				paramMap.put(((Map.Entry) obj).getKey().toString(), ((Map.Entry) obj).getValue().toString());
 			}
-        }
-		
-		System.out.println(paramMap.get("id"));
-		System.out.println(paramMap.get("userId"));
-		System.out.println(paramMap.get("answerName"));
-		System.out.println(paramMap.get("answerComment"));
+		}
+
+		this.wechatService.answer(paramMap);
 		return true;
 	}
 
@@ -372,7 +382,6 @@ public class WechatController {
 		String fileName = "";
 
 		try {
-			// 创建连接
 			URL url = new URL(urlString);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
@@ -384,7 +393,6 @@ public class WechatController {
 
 			connection.connect();
 
-			// POST请求
 			DataOutputStream out = new DataOutputStream(connection.getOutputStream());
 			net.sf.json.JSONObject obj = new net.sf.json.JSONObject();
 			obj.element("path", "pages/detail/detail");
@@ -407,7 +415,6 @@ public class WechatController {
 			os.close();
 			in.close();
 
-			// 断开连接
 			connection.disconnect();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
