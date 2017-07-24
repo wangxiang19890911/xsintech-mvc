@@ -4,5 +4,19 @@
 	<select id="find"  resultType="Int">
 		SELECT COUNT(*) FROM IOO_USER
 		 WHERE USERNAME=#{userName} AND PASSWORD=#{passWord}
-	</select> 
+	</select>
+	<insert id="save" parameterType="com.xsintech.model.UserSave">
+		INSERT INTO IOO_USER VALUES(null,#{userName},#{password},#{gender},#{old},#{photo},#{email},"f");
+	</insert>
+	<select id="findOne"  resultType="Int">
+		SELECT COUNT(*) FROM IOO_USER
+		 WHERE USERNAME=#{userName} 
+	</select>
+	<update id="up" parameterType="com.xsintech.model.UserSave">
+		UPDATE IOO_USER SET PASSWORD=#{password},STATE="z" WHERE USERNAME=#{userName}
+	</update>
+	<select id="find1"  resultType="String">
+		SELECT STATE FROM IOO_USER
+		 WHERE USERNAME=#{userName} 
+	</select>
 </mapper>

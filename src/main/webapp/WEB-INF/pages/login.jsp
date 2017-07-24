@@ -27,29 +27,32 @@
 					<div class="panel-heading">
 						<strong class=""> 登陆 </strong>
 					</div>
+					<p class="text-center"  style="font-size:14px"><span class=text-danger> ${error } </span></p>
 					<div class="panel-body">
-						<!-- <form submit="formSubmit()"> -->
+						<form action="${pageContext.request.contextPath}/getUser"  method="POST"  id="userForm">
 						<div class="form-group input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input type="text"
-								id="username" name="userName" ng-model="user.userName"
-								class="form-control" placeholder="请输入用户名" />
+							<span class="input-group-addon">
+							<i class="glyphicon glyphicon-user"></i>
+							</span> <input type="text" id="username" name="userName"  class="form-control" placeholder="请输入用户名" />
 						</div>
 						<div class="form-group input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-lock"></i></span> <input type="password"
-								id="password" name="passWord" ng-model="user.passWord"
-								class="form-control" placeholder="请输入密码" />
+							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i>
+							</span> <input type="password" id="password" name="passWord"  class="form-control" placeholder="请输入密码" />
 						</div>
 						<div class="form-group">
 							<label class="checkbox-inline" style="margin-top: 8px;">
-								<input type="checkbox" /> 记住账号
-							</label> <span class="pull-right"> <input id="login" type="button"
-								ng-click="getUser()" class="btn btn-primary" value="登陆" />
-							</span> 
-							<span> ${error } </span>
+								<input id="chk_userId" type="checkbox" /> 记住账号
+								<input type="hidden" id="flag"  name="flag" />
+								<input type="hidden" id="default_userId"  name="default_userId" value="${default_userId }" />
+							</label> 
+							<span class="pull-right"> <input id="login" type="button"
+								class="btn btn-primary" value="登陆" onclick="submitForm()" />
+							</span>
+							 <span class="pull-right"> <input id="login" type="button"
+								class="btn btn-primary" value="注册" onclick="save()" />
+							</span>
 						</div>
-						<!-- </form> -->
+						</form>
 					</div>
 				</div>
 			</div>
@@ -61,32 +64,8 @@
 		src="${pageContext.request.contextPath}/common/jquery/jquery-3.2.1.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/common/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/common/angular/angular.min.js"></script>
-	<script type="text/javascript">
-		/* function MyController($scope, $http){ */
-		var app = angular.module('myApp', []);
-
-		app.controller('LoginController', function($scope, $http) {
-			var count = $scope.user = {
-				userName : "a304058615",
-				passWord : "304058615"
-			};
-			$scope.getUser = function() {
-				$http({
-					method : "POST",
-					url : "http://localhost:8080/xsintech-mvc/getUser",
-					data : {
-						'userName' : count.userName,
-						'passWord'  : count.passWord
-					}
-				}).then(function(data,status) {
-					
-				})
-			};
-		});
-
-		/* } */
-	</script>
+		<script
+		src="${pageContext.request.contextPath}/js/login.js"></script>
+	
 </body>
 </html>
