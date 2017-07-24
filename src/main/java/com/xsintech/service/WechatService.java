@@ -3,13 +3,10 @@ package com.xsintech.service;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Service;
-
 import com.xsintech.model.AnswerCountInfo;
 import com.xsintech.model.AnswerDetailInfo;
 import com.xsintech.model.Event;
 import com.xsintech.model.EventOption;
-@Service
 public interface WechatService {
 
 	List<AnswerCountInfo> getAnswerCountInfoByEventId(Integer id);

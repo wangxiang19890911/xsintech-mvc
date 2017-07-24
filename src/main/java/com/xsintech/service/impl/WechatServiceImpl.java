@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.xsintech.dao.WechatDao;
 import com.xsintech.model.AnswerCountInfo;
@@ -12,7 +13,7 @@ import com.xsintech.model.AnswerInfo;
 import com.xsintech.model.Event;
 import com.xsintech.model.EventOption;
 import com.xsintech.service.WechatService;
-
+@Service
 public class WechatServiceImpl implements WechatService {
 
 	@Autowired
@@ -48,6 +49,7 @@ public class WechatServiceImpl implements WechatService {
 		String userId = paramMap.get("userId").toString();
 		String answerName = paramMap.get("answerName").toString();
 		String answerComment = paramMap.get("answerComment").toString();
+		@SuppressWarnings("unchecked")
 		List<AnswerDetailInfo> details = (List<AnswerDetailInfo>)paramMap.get("details");
 
 		AnswerInfo answerInfo = new AnswerInfo();
