@@ -11,7 +11,6 @@ import com.xsintech.model.AnswerCountInfo;
 import com.xsintech.model.AnswerDetailInfo;
 import com.xsintech.model.AnswerInfo;
 import com.xsintech.model.Event;
-import com.xsintech.model.EventOption;
 import com.xsintech.service.WechatService;
 @Service
 public class WechatServiceImpl implements WechatService {
@@ -27,8 +26,8 @@ public class WechatServiceImpl implements WechatService {
 		return this.wechatDao.getUserEventListByUserId(userId);
 	}
 
-	public List<EventOption> getSubDetail(Integer id, Integer subId, Integer status) {
-		return getSubDetail(id, subId, status);
+	public List<AnswerInfo> getSubDetail(Integer id, Integer subId) {
+		return this.wechatDao.getSubDetail(id, subId);
 	}
 
 	public Integer save(String name, String datas, String comment, String userId) {
@@ -40,7 +39,6 @@ public class WechatServiceImpl implements WechatService {
 			String[] dataArray = datas.split("\n");
 			this.saveEventOptions(saveEvent.getId(), dataArray);
 		}
-		
 		return saveEvent.getId();
 	}
 
@@ -78,6 +76,14 @@ public class WechatServiceImpl implements WechatService {
 			row += this.wechatDao.saveAnswerDetailInfo(answerId, answerDetailInfo);
 		}
 		return row;
+	}
+
+	public Event getEventById(Integer id) {
+		return this.wechatDao.getEventById(id);
+	}
+
+	public Integer getAnswerCountByEventId(Integer answerId) {
+		return this.wechatDao.getAnswerCountByEventId(answerId);
 	}
 
 }

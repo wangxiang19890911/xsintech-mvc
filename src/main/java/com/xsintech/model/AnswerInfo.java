@@ -20,6 +20,16 @@ public class AnswerInfo {
 
 	private List<AnswerDetailInfo> answerDetails;
 
+	private String optionValue;
+
+	public String getOptionValue() {
+		return optionValue;
+	}
+
+	public void setOptionValue(String optionValue) {
+		this.optionValue = optionValue;
+	}
+
 	public Integer getEventId() {
 		return eventId;
 	}

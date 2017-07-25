@@ -12,27 +12,11 @@ public class Event {
 
 	private String userId;
 
-	private Integer answers;
+	private Integer answerCount;
 
 	private List<AnswerCountInfo> details;
 
 	private String createdDate;
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(String createdDate) {
-		this.createdDate = createdDate;
-	}
 
 	public Integer getId() {
 		return id;
@@ -58,12 +42,20 @@ public class Event {
 		this.eventComment = eventComment;
 	}
 
-	public Integer getAnswers() {
-		return answers;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setAnswers(Integer answers) {
-		this.answers = answers;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public Integer getAnswerCount() {
+		return answerCount;
+	}
+
+	public void setAnswerCount(Integer answerCount) {
+		this.answerCount = answerCount;
 	}
 
 	public List<AnswerCountInfo> getDetails() {
@@ -72,6 +64,14 @@ public class Event {
 
 	public void setDetails(List<AnswerCountInfo> details) {
 		this.details = details;
+	}
+
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
 	}
 
 }

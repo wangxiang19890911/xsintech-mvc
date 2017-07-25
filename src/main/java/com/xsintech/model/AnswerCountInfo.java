@@ -4,7 +4,7 @@ public class AnswerCountInfo {
 
 	private Integer subId;
 
-	private String date;
+	private String optionValue;
 
 	private Integer attend;
 
@@ -30,12 +30,12 @@ public class AnswerCountInfo {
 		this.status = status;
 	}
 
-	public String getDate() {
-		return date;
+	public String getOptionValue() {
+		return optionValue;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setOptionValue(String optionValue) {
+		this.optionValue = optionValue;
 	}
 
 	public Integer getAttend() {

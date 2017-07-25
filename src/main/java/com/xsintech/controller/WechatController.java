@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,7 +39,6 @@ import com.xsintech.model.AnswerInfo;
 import com.xsintech.model.Event;
 import com.xsintech.service.WechatService;
 import com.xsintech.util.DateUtils;
-import com.xsintech.util.PasswordUtil;
 
 import net.sf.json.JSONArray;
 
@@ -79,8 +79,10 @@ public class WechatController {
 				Map<String, Object> map = JSONObject.parseObject(jsonBuffer.toString());
 				System.out.println("openid = " + String.valueOf(map.get("openid")));
 				if (null != map.get("openid")) {
-					openid = PasswordUtil.sha256hash(map.get("openid").toString().getBytes("Windows-31J"), "xsintech",
-							1000);
+					//TODO
+					openid = UUID.randomUUID().toString();
+//					openid = PasswordUtil.sha256hash(map.get("openid").toString().getBytes("Windows-31J"), "xsintech",
+//							1000);
 					System.out.println("new openid = " + openid);
 				}
 			} catch (Exception e) {
@@ -116,53 +118,59 @@ public class WechatController {
 	@RequestMapping(value = "/wechat/detail", method = RequestMethod.GET)
 	@ResponseBody
 	public Event getDetail(Integer id) {
-//		List<EventAnswerInfo> events = this.wechatService.getAnswerCountInfoByEventId(id);
+		Event event = this.wechatService.getEventById(id);
+		if (null != event) {
+			List<AnswerCountInfo> events = this.wechatService.getAnswerCountInfoByEventId(id);
+			event.setDetails(events);
 
-		// TODO test data
-		Event event = new Event();
-		List<AnswerCountInfo> events = new ArrayList<AnswerCountInfo>();
+			Integer answerCount = this.wechatService.getAnswerCountByEventId(id);
+			event.setAnswerCount(answerCount);
+		}
 
-		AnswerCountInfo e = new AnswerCountInfo();
-		e.setSubId(101);
-		e.setDate("2017/07/07(五) 19:00 ~ 22:30");
-		e.setAttend(3);
-		e.setUndetermined(2);
-		e.setCancel(2);
-		e.setStatus(1);
-		events.add(e);
-
-		e = new AnswerCountInfo();
-		e.setSubId(102);
-		e.setDate("2017/07/08(六) 17:00 ~ 20:00");
-		e.setAttend(4);
-		e.setUndetermined(1);
-		e.setCancel(2);
-		e.setStatus(0);
-		events.add(e);
-
-		e = new AnswerCountInfo();
-		e.setSubId(103);
-		e.setDate("2017/07/09(日) 17:00 ~ 20:00");
-		e.setAttend(5);
-		e.setUndetermined(1);
-		e.setCancel(1);
-		e.setStatus(2);
-		events.add(e);
-
-		e = new AnswerCountInfo();
-		e.setSubId(104);
-		e.setDate("2017/07/10(一) 17:00 ~ 20:00");
-		e.setAttend(5);
-		e.setUndetermined(1);
-		e.setCancel(1);
-		e.setStatus(2);
-		events.add(e);
-
-		event.setId(11100);
-		event.setEventName("聚会吧小伙伴们！");
-		event.setEventComment("吃饭唱歌喝酒吧！去哪？");
-		event.setAnswers(7);
-		event.setDetails(events);
+//		Event event = new Event();
+//		List<AnswerCountInfo> events = new ArrayList<AnswerCountInfo>();
+//
+//		AnswerCountInfo e = new AnswerCountInfo();
+//		e.setSubId(101);
+//		e.setDate("2017/07/07(五) 19:00 ~ 22:30");
+//		e.setAttend(3);
+//		e.setUndetermined(2);
+//		e.setCancel(2);
+//		e.setStatus(1);
+//		events.add(e);
+//
+//		e = new AnswerCountInfo();
+//		e.setSubId(102);
+//		e.setDate("2017/07/08(六) 17:00 ~ 20:00");
+//		e.setAttend(4);
+//		e.setUndetermined(1);
+//		e.setCancel(2);
+//		e.setStatus(0);
+//		events.add(e);
+//
+//		e = new AnswerCountInfo();
+//		e.setSubId(103);
+//		e.setDate("2017/07/09(日) 17:00 ~ 20:00");
+//		e.setAttend(5);
+//		e.setUndetermined(1);
+//		e.setCancel(1);
+//		e.setStatus(2);
+//		events.add(e);
+//
+//		e = new AnswerCountInfo();
+//		e.setSubId(104);
+//		e.setDate("2017/07/10(一) 17:00 ~ 20:00");
+//		e.setAttend(5);
+//		e.setUndetermined(1);
+//		e.setCancel(1);
+//		e.setStatus(2);
+//		events.add(e);
+//
+//		event.setId(11100);
+//		event.setEventName("聚会吧小伙伴们！");
+//		event.setEventComment("吃饭唱歌喝酒吧！去哪？");
+//		event.setAnswerCount(7);
+//		event.setDetails(events);
 
 		return event;
 	}
@@ -183,21 +191,21 @@ public class WechatController {
 		Event event = new Event();
 		event.setId(10010);
 		event.setEventName("今天周五了大家去聚会吧1");
-		event.setAnswers(8);
+		event.setAnswerCount(8);
 		event.setCreatedDate("2017/07/01 15:30:15");
 		list.add(event);
 
 		event = new Event();
 		event.setId(10011);
 		event.setEventName("今天周五了大家去聚会吧2");
-		event.setAnswers(11);
+		event.setAnswerCount(11);
 		event.setCreatedDate("2017/07/01 15:30:15");
 		list.add(event);
 
 		event = new Event();
 		event.setId(10012);
 		event.setEventName("今天周五了大家去聚会吧3今天周五了大家去聚会吧3今天周五了大家去聚会吧");
-		event.setAnswers(3);
+		event.setAnswerCount(3);
 		event.setCreatedDate("2017/07/01 15:30:15");
 		list.add(event);
 
@@ -213,32 +221,32 @@ public class WechatController {
 	@RequestMapping(value = "/wechat/sub_detail", method = RequestMethod.GET)
 	@ResponseBody
 	public List<AnswerInfo> getSubDetail(Integer id, Integer subId) {
-//		List<SubDetail> subDetails = this.wechatService.getSubDetail(id, subId, status);
+		List<AnswerInfo> subDetails = this.wechatService.getSubDetail(id, subId);
 
 		// TODO test data
-		List<AnswerInfo> answerInfos = new ArrayList<AnswerInfo>();
-		AnswerInfo answerInfo = new AnswerInfo();
-		answerInfo.setAnswerName("小李1");
-		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
-		answerInfo.setAnswerDate("2017/07/01 11:11:11");
-		answerInfo.setStatus(1);
-		answerInfos.add(answerInfo);
-		
-		answerInfo = new AnswerInfo();
-		answerInfo.setAnswerName("小李2");
-		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
-		answerInfo.setAnswerDate("2017/07/01 11:11:11");
-		answerInfo.setStatus(1);
-		answerInfos.add(answerInfo);
-		
-		answerInfo = new AnswerInfo();
-		answerInfo.setAnswerName("小李3");
-		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
-		answerInfo.setAnswerDate("2017/07/01 11:11:11");
-		answerInfo.setStatus(1);
-		answerInfos.add(answerInfo);
-		
-		return answerInfos;
+//		List<AnswerInfo> answerInfos = new ArrayList<AnswerInfo>();
+//		AnswerInfo answerInfo = new AnswerInfo();
+//		answerInfo.setAnswerName("小李1");
+//		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
+//		answerInfo.setAnswerDate("2017/07/01 11:11:11");
+//		answerInfo.setStatus(1);
+//		answerInfos.add(answerInfo);
+//		
+//		answerInfo = new AnswerInfo();
+//		answerInfo.setAnswerName("小李2");
+//		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
+//		answerInfo.setAnswerDate("2017/07/01 11:11:11");
+//		answerInfo.setStatus(1);
+//		answerInfos.add(answerInfo);
+//		
+//		answerInfo = new AnswerInfo();
+//		answerInfo.setAnswerName("小李3");
+//		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
+//		answerInfo.setAnswerDate("2017/07/01 11:11:11");
+//		answerInfo.setStatus(1);
+//		answerInfos.add(answerInfo);
+//		
+		return subDetails;
 	}
 
 	/**
@@ -251,10 +259,9 @@ public class WechatController {
 	@RequestMapping(value = "/wechat/save", method = RequestMethod.POST)
 	@ResponseBody
 	public Integer saveEvent(String name, String datas, String comment, String userId) {
-//		Integer eventId = this.wechatService.save(name, datas, comment, userId);
+		Integer eventId = this.wechatService.save(name, datas, comment, userId);
 
-		// TODO return id
-		return 10010;
+		return eventId;
 	}
 
 	/**

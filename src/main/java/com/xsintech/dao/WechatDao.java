@@ -6,7 +6,6 @@ import com.xsintech.model.AnswerCountInfo;
 import com.xsintech.model.AnswerDetailInfo;
 import com.xsintech.model.AnswerInfo;
 import com.xsintech.model.Event;
-import com.xsintech.model.EventOption;
 
 public interface WechatDao {
 
@@ -14,7 +13,7 @@ public interface WechatDao {
 
 	List<Event> getUserEventListByUserId(String userId);
 
-	List<EventOption> getSubDetail(Integer id, Integer subId, Integer status);
+	List<AnswerInfo> getSubDetail(Integer id, Integer subId);
 
 	Integer saveEvent(Event event);
 
@@ -23,4 +22,8 @@ public interface WechatDao {
 	Integer saveAnswerInfo(AnswerInfo answerInfo);
 
 	Integer saveAnswerDetailInfo(Integer answerId, AnswerDetailInfo detailInfo);
+
+	Integer getAnswerCountByEventId(Integer answerId);
+
+	Event getEventById(Integer id);
 }
