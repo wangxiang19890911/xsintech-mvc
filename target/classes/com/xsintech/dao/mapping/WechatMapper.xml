@@ -58,7 +58,7 @@
 			T3.OPTION_VALUE as optionValue,
 			T1.ANSWER_NAME as answerName,
 			T2.STATUS as status, 
-			T1.ANSWER_DATE as answerDate, 
+			DATE_FORMAT(T1.ANSWER_DATE, '%Y/%m/%d %T') as answerDate, 
 			T1.ANSWER_COMMENT as answerComment
 		FROM 
 			XST_ANSWER T1 
@@ -73,6 +73,9 @@
 		WHERE 
 			T3.EVENT_ID = #{param1}
 			AND T2.SUB_ID = #{param2}
+		ORDER BY
+			T2.STATUS, 
+			T1.ANSWER_DATE
 	</select>
 
 	<select id="getAnswerCountByEventId" resultType="Integer">
