@@ -15,13 +15,39 @@
 			`XST_EVENT`.`ID` = #{param1}
 	</select>
 
+	<select id="getUserEventListByUserId" resultType="com.xsintech.model.Event">
+		SELECT 
+			T1.ID as id, 
+			T1.EVENT_NAME as eventName, 
+			T1.USER_ID as userId, 
+			DATE_FORMAT(T1.CREATED_DATE, '%Y/%m/%d %T')  as createdDate ,
+			COUNT(T0.ANSWER_ID) as answerCount
+		FROM 
+			XST_ANSWER  T0
+		RIGHT JOIN 
+			XST_EVENT T1 
+		ON 
+			T0.EVENT_ID = T1.ID
+		WHERE 
+			T1.USER_ID = #{param1}
+		GROUP BY 
+			T1.USER_ID, 
+			T1.ID, 
+			T1.EVENT_NAME, 
+			T1.CREATED_DATE
+		ORDER BY 
+			T1.CREATED_DATE DESC
+		
+	</select>
+
 	<select id="getAnswerCountInfoByEventId" resultType="com.xsintech.model.AnswerCountInfo">
 		SELECT 
 			T0.ID as subId,
 			OPTION_VALUE as optionValue,
 			IFNULL(T1.CT, 0) as attend,
 			IFNULL(T2.CT, 0) as undetermined,
-			IFNULL(T3.CT, 0) as cancel 
+			IFNULL(T3.CT, 0) as cancel,
+			'0' as status
 		FROM 
 			XST_EVENT_OPTION T0
 		LEFT JOIN 
@@ -145,4 +171,5 @@
 			#{param2.status}
 		)
 	</insert>
+
 </mapper>

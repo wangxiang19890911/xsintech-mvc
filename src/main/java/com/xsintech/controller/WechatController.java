@@ -16,12 +16,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,7 +36,9 @@ import com.xsintech.model.AnswerDetailInfo;
 import com.xsintech.model.AnswerInfo;
 import com.xsintech.model.Event;
 import com.xsintech.service.WechatService;
+import com.xsintech.util.CONST;
 import com.xsintech.util.DateUtils;
+import com.xsintech.util.PasswordUtil;
 
 import net.sf.json.JSONArray;
 
@@ -56,7 +56,7 @@ public class WechatController {
 	@RequestMapping(value = "/wechat/login", method = RequestMethod.GET)
 	@ResponseBody
 	public String login(String code) {
-		final String urlString = "https://api.weixin.qq.com/sns/jscode2session?grant_type=authorization_code&appid=wx54cdbffbb1eef645&secret=b4c5b7d38063c7c73d9e37ca3d06c047&secret=b4c5b7d38063c7c73d9e37ca3d06c047&js_code="
+		final String urlString = "https://api.weixin.qq.com/sns/jscode2session?grant_type=authorization_code&appid=" + CONST.APP_ID + "&secret=" + CONST.SECRET + "&js_code="
 				+ code;
 		HttpURLConnection con = null;
 		BufferedReader br = null;
@@ -79,10 +79,9 @@ public class WechatController {
 				Map<String, Object> map = JSONObject.parseObject(jsonBuffer.toString());
 				System.out.println("openid = " + String.valueOf(map.get("openid")));
 				if (null != map.get("openid")) {
-					//TODO
-					openid = UUID.randomUUID().toString();
-//					openid = PasswordUtil.sha256hash(map.get("openid").toString().getBytes("Windows-31J"), "xsintech",
-//							1000);
+//					openid = UUID.randomUUID().toString();
+					openid = PasswordUtil.sha256hash(map.get("openid").toString().getBytes("Windows-31J"), "xsintech",
+							1000);
 					System.out.println("new openid = " + openid);
 				}
 			} catch (Exception e) {
@@ -127,51 +126,6 @@ public class WechatController {
 			event.setAnswerCount(answerCount);
 		}
 
-//		Event event = new Event();
-//		List<AnswerCountInfo> events = new ArrayList<AnswerCountInfo>();
-//
-//		AnswerCountInfo e = new AnswerCountInfo();
-//		e.setSubId(101);
-//		e.setDate("2017/07/07(五) 19:00 ~ 22:30");
-//		e.setAttend(3);
-//		e.setUndetermined(2);
-//		e.setCancel(2);
-//		e.setStatus(1);
-//		events.add(e);
-//
-//		e = new AnswerCountInfo();
-//		e.setSubId(102);
-//		e.setDate("2017/07/08(六) 17:00 ~ 20:00");
-//		e.setAttend(4);
-//		e.setUndetermined(1);
-//		e.setCancel(2);
-//		e.setStatus(0);
-//		events.add(e);
-//
-//		e = new AnswerCountInfo();
-//		e.setSubId(103);
-//		e.setDate("2017/07/09(日) 17:00 ~ 20:00");
-//		e.setAttend(5);
-//		e.setUndetermined(1);
-//		e.setCancel(1);
-//		e.setStatus(2);
-//		events.add(e);
-//
-//		e = new AnswerCountInfo();
-//		e.setSubId(104);
-//		e.setDate("2017/07/10(一) 17:00 ~ 20:00");
-//		e.setAttend(5);
-//		e.setUndetermined(1);
-//		e.setCancel(1);
-//		e.setStatus(2);
-//		events.add(e);
-//
-//		event.setId(11100);
-//		event.setEventName("聚会吧小伙伴们！");
-//		event.setEventComment("吃饭唱歌喝酒吧！去哪？");
-//		event.setAnswerCount(7);
-//		event.setDetails(events);
-
 		return event;
 	}
 
@@ -183,33 +137,9 @@ public class WechatController {
 	@RequestMapping(value = "/wechat/self", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Event> myEvent(String userId) {
-//		List<Event> myEvents = this.wechatService.getUserEventListByUserId(userId);
-		
-		List<Event> list = new ArrayList<Event>();
+		List<Event> myEvents = this.wechatService.getUserEventListByUserId(userId);
 
-		// TODO test data
-		Event event = new Event();
-		event.setId(10010);
-		event.setEventName("今天周五了大家去聚会吧1");
-		event.setAnswerCount(8);
-		event.setCreatedDate("2017/07/01 15:30:15");
-		list.add(event);
-
-		event = new Event();
-		event.setId(10011);
-		event.setEventName("今天周五了大家去聚会吧2");
-		event.setAnswerCount(11);
-		event.setCreatedDate("2017/07/01 15:30:15");
-		list.add(event);
-
-		event = new Event();
-		event.setId(10012);
-		event.setEventName("今天周五了大家去聚会吧3今天周五了大家去聚会吧3今天周五了大家去聚会吧");
-		event.setAnswerCount(3);
-		event.setCreatedDate("2017/07/01 15:30:15");
-		list.add(event);
-
-		return list;
+		return myEvents;
 	}
 
 	/**
@@ -222,30 +152,6 @@ public class WechatController {
 	@ResponseBody
 	public List<AnswerInfo> getSubDetail(Integer id, Integer subId) {
 		List<AnswerInfo> subDetails = this.wechatService.getSubDetail(id, subId);
-
-		// TODO test data
-//		List<AnswerInfo> answerInfos = new ArrayList<AnswerInfo>();
-//		AnswerInfo answerInfo = new AnswerInfo();
-//		answerInfo.setAnswerName("小李1");
-//		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
-//		answerInfo.setAnswerDate("2017/07/01 11:11:11");
-//		answerInfo.setStatus(1);
-//		answerInfos.add(answerInfo);
-//		
-//		answerInfo = new AnswerInfo();
-//		answerInfo.setAnswerName("小李2");
-//		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
-//		answerInfo.setAnswerDate("2017/07/01 11:11:11");
-//		answerInfo.setStatus(1);
-//		answerInfos.add(answerInfo);
-//		
-//		answerInfo = new AnswerInfo();
-//		answerInfo.setAnswerName("小李3");
-//		answerInfo.setAnswerComment("xxxxxxxxxxxxxxxxxxxxxxxxxx");
-//		answerInfo.setAnswerDate("2017/07/01 11:11:11");
-//		answerInfo.setStatus(1);
-//		answerInfos.add(answerInfo);
-//		
 		return subDetails;
 	}
 
@@ -298,8 +204,8 @@ public class WechatController {
 	 */
 	@RequestMapping(value = "/wechat/createQRCode")
 	@ResponseBody
-	public String create() throws URISyntaxException {
-		final String urlString = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx54cdbffbb1eef645&secret=b4c5b7d38063c7c73d9e37ca3d06c047";
+	public String create(Integer id) throws URISyntaxException {
+		final String urlString = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + CONST.APP_ID + "&secret=" + CONST.SECRET;
 		String filePath = "";
 		HttpURLConnection con = null;
 		BufferedReader br = null;
@@ -321,7 +227,7 @@ public class WechatController {
 				Map<String, Object> map = JSONObject.parseObject(jsonBuffer.toString());
 				String token = map.get("access_token").toString();
 
-				filePath = this.createQRCode(token);
+				filePath = this.createQRCode(token, id);
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			} finally {
@@ -383,7 +289,7 @@ public class WechatController {
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
-	private String createQRCode(String token) throws ClientProtocolException, IOException {
+	private String createQRCode(String token, Integer id) throws ClientProtocolException, IOException {
 		final String urlString = "https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=" + token;
 		String filePath = "";
 		String fileName = "";
@@ -402,14 +308,13 @@ public class WechatController {
 
 			DataOutputStream out = new DataOutputStream(connection.getOutputStream());
 			net.sf.json.JSONObject obj = new net.sf.json.JSONObject();
-			obj.element("path", "pages/detail/detail");
+			obj.element("path", "pages/detail/detail?id=" + id);
 
 			out.writeBytes(obj.toString());
 			out.flush();
 			out.close();
 
-			// TODO path?
-			filePath = "/Users/pactera/Documents/develop/xsintech/qrcode/";
+			filePath = CONST.FILE_PATH;
 			fileName = "qrcode" + DateUtils.YYYYMMDDHHMMSS.get().format(new Date()).toString() + ".jpeg";
 			File file = new File(filePath, fileName);
 			InputStream in = connection.getInputStream();
