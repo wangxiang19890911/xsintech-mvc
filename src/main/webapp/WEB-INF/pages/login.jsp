@@ -20,17 +20,17 @@
 <body ng-app="myApp" ng-controller="LoginController">
 
 	<div class="container vertical-center">
-		<div class="row">
+		<div class="row" >
 			<div
-				class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-				<div class="panel panel-default">
-					<div class="panel-heading">
+				class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1" >
+				<div class="panel panel-default" >
+					<div class="panel-heading" >
 						<strong class=""> 登陆 </strong>
 					</div>
-					<p class="text-center"  style="font-size:14px"><span class=text-danger> ${error } </span></p>
-					<div class="panel-body">
-						<form action="${pageContext.request.contextPath}/getUser"  method="POST"  id="userForm">
-						<div class="form-group input-group">
+					<p class="text-center"  style="font-size:14px; height:22px;"><span class=text-danger style="font-size:12px"> ${error } </span></p>
+					<div class="panel-body" >
+						<form action="${pageContext.request.contextPath}/getUser"  method="POST"  id="userForm" >
+						<div class="form-group input-group" >
 							<span class="input-group-addon">
 							<i class="glyphicon glyphicon-user"></i>
 							</span> <input type="text" id="username" name="userName"  class="form-control" placeholder="请输入用户名" />

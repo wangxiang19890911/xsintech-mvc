@@ -1,11 +1,15 @@
 package com.xsintech.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.omg.CORBA.portable.ApplicationException;
 import org.springframework.stereotype.Service;
 
 import com.xsintech.dao.UserDao;
+import com.xsintech.model.Contract;
 import com.xsintech.model.User;
 import com.xsintech.model.UserSave;
 import com.xsintech.service.UserService;
@@ -15,7 +19,7 @@ public class UserServiceImpl implements UserService {
 	@Resource
 	private UserDao userDAO;
 
-	public int checkLogin(String userName, String passWord) {
+	public UserSave checkLogin(String userName, String passWord) {
 		return userDAO.find(userName,passWord);
 	}
 
@@ -33,4 +37,9 @@ public class UserServiceImpl implements UserService {
 	public void up(UserSave u) {
 		userDAO.up(u);
 	}
+
+	public List<Contract> findfAll(Map map) {
+		return userDAO.findfAll(map);
+	}
+
 }

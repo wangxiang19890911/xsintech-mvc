@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xsintech.dao.UserDao">
-	<select id="find"  resultType="Int">
-		SELECT COUNT(*) FROM IOO_USER
+	<select id="find"  resultType="com.xsintech.model.UserSave">
+		SELECT
+		state as state
+		 FROM IOO_USER
 		 WHERE USERNAME=#{userName} AND PASSWORD=#{passWord}
 	</select>
+	
 	<insert id="save" parameterType="com.xsintech.model.UserSave">
 		INSERT INTO IOO_USER VALUES(null,#{userName},#{password},#{gender},#{old},#{photo},#{email},"f");
 	</insert>
+	
 	<select id="findOne"  resultType="Int">
 		SELECT COUNT(*) FROM IOO_USER
 		 WHERE USERNAME=#{userName} 
 	</select>
+	
 	<update id="up" parameterType="com.xsintech.model.UserSave">
 		UPDATE IOO_USER SET PASSWORD=#{password},STATE="z" WHERE USERNAME=#{userName}
 	</update>
+	
 	<select id="find1"  resultType="String">
 		SELECT STATE FROM IOO_USER
 		 WHERE USERNAME=#{userName} 
 	</select>
+	
+	<select id="findfAll" parameterType="Map" resultType="com.xsintech.model.Contract"  >
+		SELECT Name,Aparty,Bparty FROM IOO_CONTRACT limit #{index} ,#{index1}
+	</select>
+	
 </mapper>
