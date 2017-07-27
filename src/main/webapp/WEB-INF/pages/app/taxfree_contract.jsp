@@ -59,9 +59,6 @@
 		</div>
 	</nav>
 
-	<div class="container-fluid">
-		<div class="container-fluid">
-			<div class="row">
 				<div class="col-sm-3 col-md-2 collapse in sidebar">
 					<ul id="left-menus" class="nav nav-pills nav-stacked">
 						<li class="active"><a href="#">免税合同作成</a></li>
@@ -76,6 +73,21 @@
 						受托方（乙方）:<input type="text" /> <input type="button" value="搜索"
 							class="btn btn-primary" />
 					</div>
+					 <!-- 搜索区域  -->
+      <div style="margin: 50px;">
+      <div class="row" style="padding-bottom: 20px;margin-top:20px;">
+        <!-- 搜索框的长度为该行的3/4  -->
+        	<div class="col-md-9">
+         		<div class="input-group">
+            	 <input id="searchString" type="text" style="height:28px;" class="form-control" placeholder="请输入实体名">
+             		<span class="input-group-btn">
+          　　                <button type="button" class="btn btn-info" onclick="search()" onkeypress="Enter()">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true">搜索</span>
+                    </button>
+               </span>
+        </div>
+       </div>
+    </div>
 					<div class="row">
 						<h2 class="pull-left">劳动合同作成</h2>
 					</div>
@@ -85,37 +97,65 @@
 						<a href="#"
 							class="pull-left button button-glow button-rounded button-raised button-caution button-small">删除</a>
 					</div>
-					<div class="row" ng-app="taxfree" ng-controller="customersCtrl">
-						<table class="table" >
-							<tr>
-								<th>name</th>
-								<th>City</th>
-								<th>Country</th>
-							</tr>
-							<tr id = "tr">
-                   <td></td>  
-                   <td></td>  
-                   <td></td>      
-							</tr>
-							<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-						</table>
-						<div >
-							<input type="button" id="pix" name="pix" value="上一页"
-								style="margin-top: -5px;" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-							 <input type="button" id="next" name="next" value="下一页" />
-							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<p></p><p></p><p></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
+					 <!-- 表格显示 -->
+     <div class="row">
+        <div class="col-md-12" style="margin-top:20px;">
+            <div class="panel panel-info">
+                <div class="panel-heading">劳动合同作成</div>
+                    <table id="table" class="table table-striped table-bordered table-hover datatable">
+                        <thead id="tem">
+                        	<tr>
+                            <th id="studentId">项目名称</th>
+                            <th id="studentName">甲方</th>
+                            <th id="courseId">乙方</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+     <div id="bottomTool" class="row-fluid" >
+        <div class="span6" style="width:25%;;margin-right: 10px;">
+            <div class="dataTables_length" id="DataTables_Table_0_length">
+                <label>
+                    每页
+                    <select id="pageSize" onchange="research()"
+                    aria-controls="DataTables_Table_0" size="1" name="DataTables_Table_0_length">
+                        <option selected="selected" value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                     条记录
+                </label>
+            </div>
+        </div>
+	</div>					
+						
+        <!-- 第2页 -->
+        <div  class="span6" style="width:30%;">
+            <div  class="dataTables_paginate paging_bootstrap pagination">
+                <ul id="previousNext">
+                    <li onclick="previous()" class="prev disabled"><a id="previousPage" href="#">← 上一页</a></li>
+                    <div id="page" style="float:left;">
+                        <select id="pageNum"  onchange="search()" class='select'
+                        style="width:50PX;margin-right:1px;" aria-controls="DataTables_Table_0" size="1" name="DataTables_Table_0_length">
+                            <option value="1" >1</option>
+                            <option value="2" >2</option>
+                            <option value="3" >3</option>
+                            <option value="4" >4</option>
+                            <option value="5" >5</option>
+                        </select>
+                    </div>
+                    <li class="next" onclick="next()"><a id="nextPage" href="#">下一页 → </a></li>
+                </ul>
+            </div>
+        </div>
 
 	<!-- js -->
-	<script
-		src="${pageContext.request.contextPath}/common/jquery/jquery-3.2.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/common/jquery/jquery-3.2.1.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/common/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 	<script

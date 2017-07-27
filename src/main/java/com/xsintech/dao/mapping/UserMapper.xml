@@ -30,4 +30,8 @@
 		SELECT Name,Aparty,Bparty FROM IOO_CONTRACT limit #{index} ,#{index1}
 	</select>
 	
+	<select id="findFirst" resultType="Int">
+	
+	</select>
+	
 </mapper>

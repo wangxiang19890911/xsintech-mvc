@@ -25,8 +25,8 @@ public class SecurityController {
 
 	@RequestMapping(value="/secure/taxfree")
 	@ResponseBody
-	public List<Contract> texfree(String page,Model model){
-		System.out.println(page);
+	public String texfree(String page,Model model){
+		/*System.out.println(page);
 		if(page==null){
 		page="0";
 		}
@@ -34,7 +34,8 @@ public class SecurityController {
 		map.put("index", Integer.parseInt(page));
 		map.put("index1", Integer.parseInt(page)+4);
 		List<Contract> con =userService.findfAll(map);
-		return con;
+		return con;*/
+		return "app/taxfree_contract";
 	}
 	
 	@RequestMapping(value="/secure/labour")
