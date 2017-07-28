@@ -23,7 +23,7 @@
 	rel="stylesheet">
 
 </head>
-<body ng-controller="SecurityController">
+<body>
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
 		style="background-color: black;">
@@ -59,65 +59,97 @@
 		</div>
 	</nav>
 
-				<div class="col-sm-3 col-md-2 collapse in sidebar">
-					<ul id="left-menus" class="nav nav-pills nav-stacked">
-						<li class="active"><a href="#">免税合同作成</a></li>
-						<li><a href="#" class="labour">劳动合同作成</a></li>
-					</ul>
-				</div>
-				<div
-					class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 context">
-					<div style="margin: 50px;">
-						项目名称:<input type="text" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						委托方（甲方）:<input type="text" /><br /> 制作时间:<input type="text" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						受托方（乙方）:<input type="text" /> <input type="button" value="搜索"
-							class="btn btn-primary" />
-					</div>
-					 <!-- 搜索区域  -->
-      <div style="margin: 50px;">
-      <div class="row" style="padding-bottom: 20px;margin-top:20px;">
-        <!-- 搜索框的长度为该行的3/4  -->
-        	<div class="col-md-9">
-         		<div class="input-group">
-            	 <input id="searchString" type="text" style="height:28px;" class="form-control" placeholder="请输入实体名">
-             		<span class="input-group-btn">
-          　　                <button type="button" class="btn btn-info" onclick="search()" onkeypress="Enter()">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true">搜索</span>
-                    </button>
-               </span>
-        </div>
-       </div>
-    </div>
-					<div class="row">
-						<h2 class="pull-left">劳动合同作成</h2>
-					</div>
-					<div class="row">
-						<a href="#"
-							class="pull-left button button-glow button-rounded button-raised button-primary button-small">新建</a>
-						<a href="#"
-							class="pull-left button button-glow button-rounded button-raised button-caution button-small">删除</a>
-					</div>
-					 <!-- 表格显示 -->
-     <div class="row">
-        <div class="col-md-12" style="margin-top:20px;">
-            <div class="panel panel-info">
-                <div class="panel-heading">劳动合同作成</div>
-                    <table id="table" class="table table-striped table-bordered table-hover datatable">
-                        <thead id="tem">
-                        	<tr>
-                            <th id="studentId">项目名称</th>
-                            <th id="studentName">甲方</th>
-                            <th id="courseId">乙方</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+	<!-- wang start -->
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 collapse in sidebar">
+                <ul id="left-menus" class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#">免税合同作成</a></li>
+                    <li><a href="#" class="abour">劳动合同作成</a></li>
+                </ul>
             </div>
-        </div>
+            <div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 context">
+			   	<div class="row">
+			   		<h2 class="pull-left col-sm-12 col-md-12">劳动合同作成</h2>
+						<div class="col-sm-12 col-md-12 context">
+							<div class="form-inline" >
+							  <div class="form-group col-sm-4 col-md-4">
+								    <label for="exampleInputEmail1" class="col-sm-5 col-md-5">项目名称:</label>
+									<input type="email" class="form-control col-sm-4 col-md-4" >
+								</div>
+								  
+								  <div class="form-group  col-sm-4 col-md-4 col-sm-offset-1 col-md-offset-1 ">
+								    <label for="exampleInputEmail1" class="col-sm-5 col-md-5 ">制作时间:</label>
+								    <input type="email" class="form-control col-sm-4 col-md-4" >
+								  </div>
+							</div>
+							
+							<div class="form-inline" >
+								<div class="form-group  col-sm-4 col-md-4">
+								    <label for="exampleInputEmail1" class="col-sm-5 col-md-5">委托方（甲方）:</label>
+								    <input type="email" class="form-control col-sm-4 col-md-4" >
+								  </div>
+								  
+								  <div class="form-group  col-sm-4 col-md-4 col-sm-offset-1 col-md-offset-1">
+								    <label for="exampleInputEmail1" class="col-sm-5 col-md-5">受托方（乙方）:</label>
+								    <input type="email" class="form-control col-sm-4 col-md-4" >
+								  </div>
+							</div>
+						</div>
+						
+						<button class="button1 button5"><span class="glyphicon glyphicon-search" aria-hidden="true">搜索</span></button>
+						<button  class="button1 button5"><span class="glyphicon glyphicon-search" aria-hidden="true">重置</span></button>
+			   	</div>
+				
+				<!-- 表格显示 -->
+			     <div class="row">
+			        <div class="col-md-12" style="margin-top:20px;">
+			            <div class="panel panel-info">
+			                <div class="panel-heading">劳动合同作成</div>
+			                    <table id="table" class="table table-striped table-bordered table-hover datatable">
+			                        <thead id="tem">
+			                        	<tr>
+			                            <th id="studentId">项目名称</th>
+			                            <th id="studentName">甲方</th>
+			                            <th id="courseId">乙方</th>
+			                        </tr>
+			                        </thead>
+			                        <tbody>
+			                        </tbody>
+			                    </table>
+			            </div>
+			        </div>
+			    </div>
+			    
+			    <div class="row">
+			   		<a href="#" class="pull-left button button-glow button-rounded button-raised button-primary button-small">新建</a>
+			   		<a href="#" class="pull-left button button-glow button-rounded button-raised button-caution button-small">删除</a>
+			    </div>
+            </div>
+		</div>
+	</div>
+</div>
+	<!-- wang end -->
+    
+      <!-- 第2页 -->
+  	<div style="margin-left:80%">
+  		<ul id="previousNext">
+        	<li onclick="previous()" class="prev disabled"><a id="previousPage" href="#">上一页</a></li>
+                  <select id="pageNum"  onchange="search()" class='select'
+                       	 style="width:50PX;margin-right:1px;" aria-controls="DataTables_Table_0" size="1" name="DataTables_Table_0_length">
+                        <option value="1" >1</option>
+	 	             	<option value="2" >2</option>
+                        <option value="3" >3</option>
+                        <option value="4" >4</option>
+                        <option value="5" >5</option>
+                  </select>
+             <li class="next" onclick="next()"><a id="nextPage" href="#">下一页</a></li>
+      	</ul>
     </div>
-     <div id="bottomTool" class="row-fluid" >
-        <div class="span6" style="width:25%;;margin-right: 10px;">
+    
+     <div id="bottomTool" class="row-fluid" style="margin-left:300px;">
+        <div class="span6" style="width:25%; margin-right: 10px;">
             <div class="dataTables_length" id="DataTables_Table_0_length">
                 <label>
                     每页
@@ -132,27 +164,7 @@
                 </label>
             </div>
         </div>
-	</div>					
-						
-        <!-- 第2页 -->
-        <div  class="span6" style="width:30%;">
-            <div  class="dataTables_paginate paging_bootstrap pagination">
-                <ul id="previousNext">
-                    <li onclick="previous()" class="prev disabled"><a id="previousPage" href="#">← 上一页</a></li>
-                    <div id="page" style="float:left;">
-                        <select id="pageNum"  onchange="search()" class='select'
-                        style="width:50PX;margin-right:1px;" aria-controls="DataTables_Table_0" size="1" name="DataTables_Table_0_length">
-                            <option value="1" >1</option>
-                            <option value="2" >2</option>
-                            <option value="3" >3</option>
-                            <option value="4" >4</option>
-                            <option value="5" >5</option>
-                        </select>
-                    </div>
-                    <li class="next" onclick="next()"><a id="nextPage" href="#">下一页 → </a></li>
-                </ul>
-            </div>
-        </div>
+	</div>				
 
 	<!-- js -->
 	<script src="${pageContext.request.contextPath}/common/jquery/jquery-3.2.1.min.js"></script>

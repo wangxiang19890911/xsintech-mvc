@@ -13,4 +13,5 @@ public interface UserService {
 	public String checkLogin1(String userName);
 	public void up(UserSave u);
 	public List<Contract> findfAll(Map map);
+	public void insert(Contract u);
 }

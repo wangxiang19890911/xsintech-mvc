@@ -202,7 +202,7 @@ function search(){
             }
 
             //如果总记录数小于5条，则不显示分页
-            if((pageNumCount-5)<0){
+            if((pageNumCount-1)<0){
                 document.getElementById("bottomTool").style.display="none";
             }else{
                 document.getElementById("bottomTool").style.display="";
@@ -252,3 +252,5 @@ function research() {
     //调用查询方法
     search();
 }
+
+ 

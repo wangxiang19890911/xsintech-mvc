@@ -27,11 +27,11 @@
 	</select>
 	
 	<select id="findfAll" parameterType="Map" resultType="com.xsintech.model.Contract"  >
-		SELECT Name,Aparty,Bparty FROM IOO_CONTRACT limit #{index} ,#{index1}
+		SELECT NAME,APARTY,BPARTY FROM IOO_CONTRACT limit #{index} ,#{index1}
 	</select>
 	
-	<select id="findFirst" resultType="Int">
-	
-	</select>
+	<insert id="inser" parameterType="com.xsintech.model.ConInsert">
+			INSERT INTO IOO_CONTRACT VALUES(#{Name},#{Aparty},#{Bparty},#Date{});
+	</insert>
 	
 </mapper>

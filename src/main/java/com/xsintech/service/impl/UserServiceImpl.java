@@ -42,4 +42,8 @@ public class UserServiceImpl implements UserService {
 		return userDAO.findfAll(map);
 	}
 
+	public void insert(Contract c) {
+		userDAO.insert(c);
+	}
+
 }
