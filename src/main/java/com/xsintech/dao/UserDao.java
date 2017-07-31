@@ -16,4 +16,6 @@ public interface UserDao {
 	public void up(UserSave u);
 	public List<Contract> findfAll(Map map);
 	public void insert(Contract c);
+	public List<UserSave> findName(@Param("userName")String userName);
+	public int findTwo();
 }

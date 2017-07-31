@@ -21,7 +21,7 @@ function init(){
 		type:"post",
 		success:function(data){
 			//1,获取上面id为cloneTr的tr元素  
-            var tr = $("#tr");  
+            var tr = $("#clonedTr");  
 
          $.each(data, function(index,item){                              
                //克隆tr，每次遍历都可以产生新的tr                              
@@ -58,31 +58,7 @@ function init(){
 		}
 	});
 }
-/**
- * 上一页点击事件
- */
-function preEvent(){
-    var curPage = $("#pre").attr("data-num");
-    if(curPage<=1){
-        $(this).attr('disabled',"true");
-    }else{
-        curPage = parseInt(curPage)-1;
-        getData(curPage);
-    }
-}
-/**
- * 下一页点击事件
- */
-function nextEvent(){
-    var curPage = $("#next").attr("data-num");
-    var pageNum = $("#pageNum").text();
-    if(curPage>=pageNum){
-        $(this).attr('disabled',"true");
-    }else{
-        curPage = parseInt(curPage)+1;
-        getData(curPage);
-    }
-}
+
 //下一页
 function next(){
     //得到当前选中项的页号
@@ -118,6 +94,7 @@ function previous(){
     //调用查询方法
     search();
 }
+
 function search(){
     //得到查询条件
     var searchString=$("#searchString").val();
@@ -181,9 +158,9 @@ function search(){
 //                +" 项记录，共 "+pageNumCount.toString()+" 项";
 
             //显示所有的页码数
-            var pageSelect =document.getElementById("page");
-            var pageOption="";
-            var flag;
+//            var pageSelect =document.getElementById("page");
+//            var pageOption="";
+//            var flag;
             //删除select下所有的option，清除所有页码
 //            document.getElementById("pageNum").options.length=0;
             for(var i=0;i<pageCount;i++){
@@ -253,4 +230,11 @@ function research() {
     search();
 }
 
+//重置输入内容
+function f1(){
+	$("#a1").val("");
+	$("#a2").val("");
+	$("#a3").val("");
+	$("#a4").val("");
+}
  

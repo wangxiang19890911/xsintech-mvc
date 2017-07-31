@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="save" parameterType="com.xsintech.model.UserSave">
-		INSERT INTO IOO_USER VALUES(null,#{userName},#{password},#{gender},#{old},#{photo},#{email},"f");
+		INSERT INTO IOO_USER VALUES(null,#{userName},#{password},#{gender},#{old},#{photo},#{email},"f",#{name},#{name1});
 	</insert>
 	
 	<select id="findOne"  resultType="Int">
@@ -30,8 +30,16 @@
 		SELECT NAME,APARTY,BPARTY FROM IOO_CONTRACT limit #{index} ,#{index1}
 	</select>
 	
-	<insert id="inser" parameterType="com.xsintech.model.ConInsert">
-			INSERT INTO IOO_CONTRACT VALUES(#{Name},#{Aparty},#{Bparty},#Date{});
+	<insert id="inser" parameterType="com.xsintech.model.Contract">
+			INSERT INTO IOO_CONTRACT VALUES(#{Name},#{Aparty},#{Bparty},#Date{date});
 	</insert>
+	
+	<select id="findName" parameterType="String" resultType="com.xsintech.model.UserSave"  >
+		SELECT NAME,NAME1 FROM IOO_USER WHERE USERNAME
+	</select>
+	
+	<select id="findTwo" resultType="Int">
+		SELECT COUNT(*) FORM IOO_CONTRACT
+	</select>
 	
 </mapper>

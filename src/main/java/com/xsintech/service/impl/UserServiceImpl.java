@@ -5,12 +5,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.omg.CORBA.portable.ApplicationException;
 import org.springframework.stereotype.Service;
 
 import com.xsintech.dao.UserDao;
 import com.xsintech.model.Contract;
-import com.xsintech.model.User;
 import com.xsintech.model.UserSave;
 import com.xsintech.service.UserService;
 
@@ -44,6 +42,15 @@ public class UserServiceImpl implements UserService {
 
 	public void insert(Contract c) {
 		userDAO.insert(c);
+	}
+
+	public List<UserSave> findName(String userName) {
+		
+		return userDAO.findName(userName);
+	}
+
+	public int findTwo() {
+		return userDAO.findTwo();
 	}
 
 }

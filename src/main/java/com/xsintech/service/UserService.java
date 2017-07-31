@@ -14,4 +14,6 @@ public interface UserService {
 	public void up(UserSave u);
 	public List<Contract> findfAll(Map map);
 	public void insert(Contract u);
+	public List<UserSave> findName(String userName);
+	public int findTwo();
 }
