@@ -26,4 +26,6 @@ public interface WechatDao {
 	Integer getAnswerCountByEventId(Integer answerId);
 
 	Event getEventById(Integer id);
+
+	Integer saveFileName(Integer id, String fileName);
 }

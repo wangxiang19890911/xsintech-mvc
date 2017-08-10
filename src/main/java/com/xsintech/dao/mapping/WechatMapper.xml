@@ -4,15 +4,16 @@
 
 	<select id="getEventById" resultType="com.xsintech.model.Event">
 		SELECT 
-			`XST_EVENT`.`ID` as id,
-		    `XST_EVENT`.`EVENT_NAME` as eventName,
-		    `XST_EVENT`.`EVENT_COMMENT` as eventComment,
-		    `XST_EVENT`.`USER_ID` as userId,
-		    `XST_EVENT`.`CREATED_DATE` as createdDate
+			ID as id,
+		    EVENT_NAME as eventName,
+		    EVENT_COMMENT as eventComment,
+		    USER_ID as userId,
+		    CREATED_DATE as createdDate,
+		    FILE_NAME as fileName
 		FROM 
-			`XST_EVENT`
+			XST_EVENT
 		WHERE
-			`XST_EVENT`.`ID` = #{param1}
+			ID = #{param1}
 	</select>
 
 	<select id="getUserEventListByUserId" resultType="com.xsintech.model.Event">
@@ -111,10 +112,10 @@
 	<insert id="saveEvent" parameterType="com.xsintech.model.Event" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO XST_EVENT
 		(
-			`EVENT_NAME`,
-			`EVENT_COMMENT`,
-			`USER_ID`,
-			`CREATED_DATE`
+			EVENT_NAME,
+			EVENT_COMMENT,
+			USER_ID,
+			CREATED_DATE
 		)
 			VALUES
 		(
@@ -128,8 +129,8 @@
 	<insert id="saveEventOption">
 		INSERT INTO XST_EVENT_OPTION
 		(
-			`EVENT_ID`,
-			`OPTION_VALUE`
+			EVENT_ID,
+			OPTION_VALUE
 		)
 		VALUES
 		(
@@ -141,11 +142,11 @@
 	<insert id="saveAnswerInfo" parameterType="com.xsintech.model.AnswerInfo" useGeneratedKeys="true" keyProperty="answerId">
 		INSERT INTO XST_ANSWER
 		(
-			`EVENT_ID`,
-			`USER_ID`,
-			`ANSWER_NAME`,
-			`ANSWER_COMMENT`,
-			`ANSWER_DATE`
+			EVENT_ID,
+			USER_ID,
+			ANSWER_NAME,
+			ANSWER_COMMENT,
+			ANSWER_DATE
 		)
 			VALUES
 		(
@@ -158,11 +159,11 @@
 	</insert>
 
 	<insert id="saveAnswerDetailInfo">
-		INSERT INTO `develop`.`XST_ANSWER_SUB`
+		INSERT INTO develop.XST_ANSWER_SUB
 		(
-			`ANSWER_ID`,
-			`SUB_ID`,
-			`STATUS`
+			ANSWER_ID,
+			SUB_ID,
+			STATUS
 		)
 		VALUES
 		(
@@ -172,4 +173,7 @@
 		)
 	</insert>
 
+	<update id="saveFileName">
+		UPDATE XST_EVENT SET FILE_NAME = #{param2} WHERE ID = #{param1}
+	</update>
 </mapper>

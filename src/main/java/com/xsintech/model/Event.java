@@ -18,6 +18,16 @@ public class Event {
 
 	private String createdDate;
 
+	private String fileName;
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	public Integer getId() {
 		return id;
 	}

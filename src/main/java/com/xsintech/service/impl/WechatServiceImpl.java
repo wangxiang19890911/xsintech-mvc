@@ -86,4 +86,8 @@ public class WechatServiceImpl implements WechatService {
 		return this.wechatDao.getAnswerCountByEventId(answerId);
 	}
 
+	public Integer saveFileName(Integer id, String fileName) {
+		return this.wechatDao.saveFileName(id, fileName);
+	}
+
 }

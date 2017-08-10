@@ -134,11 +134,11 @@ public class WechatController {
 	 * 
 	 * @param code
 	 */
-	@RequestMapping(value = "/wechat/self", method = RequestMethod.GET)
+	@RequestMapping(value = "/wechat/self", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Event> myEvent(String userId) {
 		List<Event> myEvents = this.wechatService.getUserEventListByUserId(userId);
-
+		System.out.println(userId);
 		return myEvents;
 	}
 
@@ -260,8 +260,9 @@ public class WechatController {
 	 */
 	@RequestMapping(value = "/wechat/getQRCode")
 	@ResponseBody
-	public void get(String filePath, HttpServletResponse response) {
+	public void getQrcode(String fileName, HttpServletResponse response) {
 		try {
+			final String filePath = CONST.FILE_PATH + fileName;
 			File file = new File(filePath);
 			InputStream fis = new BufferedInputStream(new FileInputStream(filePath));
 			byte[] buffer = new byte[fis.available()];
@@ -280,6 +281,39 @@ public class WechatController {
 		}
 
 	}
+	
+	/**
+	 * get qr code
+	 * 
+	 * @param filePath
+	 * @param response
+	 */
+	@RequestMapping(value = "/wechat/getQRCodeAgain")
+	@ResponseBody
+	public void getQrcode(Integer id, HttpServletResponse response) {
+		try {
+			Event event = this.wechatService.getEventById(id);
+			final String filePath = CONST.FILE_PATH + event.getFileName();
+			File file = new File(filePath);
+			if (file.exists()) {
+				InputStream fis = new BufferedInputStream(new FileInputStream(filePath));
+				byte[] buffer = new byte[fis.available()];
+				fis.read(buffer);
+				fis.close();
+				response.reset();
+				response.addHeader("Content-Disposition", "attachment;filename=" + new String(file.getName().getBytes()));
+				response.addHeader("Content-Length", "" + file.length());
+				OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
+				response.setContentType("application/octet-stream");
+				toClient.write(buffer);
+				toClient.flush();
+				toClient.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	/**
 	 * create local qr code
@@ -290,7 +324,7 @@ public class WechatController {
 	 * @throws IOException
 	 */
 	private String createQRCode(String token, Integer id) throws ClientProtocolException, IOException {
-		final String urlString = "https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=" + token;
+		final String urlString = "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=" + token;
 		String filePath = "";
 		String fileName = "";
 
@@ -302,13 +336,14 @@ public class WechatController {
 			connection.setRequestMethod("POST");
 			connection.setUseCaches(false);
 			connection.setInstanceFollowRedirects(true);
-			connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+			connection.setRequestProperty("Content-Type", "application/json");
 
 			connection.connect();
 
 			DataOutputStream out = new DataOutputStream(connection.getOutputStream());
 			net.sf.json.JSONObject obj = new net.sf.json.JSONObject();
-			obj.element("path", "pages/detail/detail?id=" + id);
+//			obj.element("path", "pages/loding/loding");
+			obj.element("scene", id.toString());
 
 			out.writeBytes(obj.toString());
 			out.flush();
@@ -324,9 +359,11 @@ public class WechatController {
 			while ((bytesRead = in.read(buffer, 0, 8192)) != -1) {
 				os.write(buffer, 0, bytesRead);
 			}
+			
+			this.wechatService.saveFileName(id, fileName);
+			
 			os.close();
 			in.close();
-
 			connection.disconnect();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -336,6 +373,6 @@ public class WechatController {
 			e.printStackTrace();
 		}
 
-		return filePath + fileName;
+		return fileName;
 	}
 }

@@ -27,4 +27,6 @@ public interface WechatService {
 	boolean answer(Map<String, Object> paramMap);
 
 	Event getEventById(Integer id);
+
+	Integer saveFileName(Integer id, String fileName);
 }
