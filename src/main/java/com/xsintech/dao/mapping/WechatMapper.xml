@@ -159,7 +159,7 @@
 	</insert>
 
 	<insert id="saveAnswerDetailInfo">
-		INSERT INTO develop.XST_ANSWER_SUB
+		INSERT INTO XST_ANSWER_SUB
 		(
 			ANSWER_ID,
 			SUB_ID,
