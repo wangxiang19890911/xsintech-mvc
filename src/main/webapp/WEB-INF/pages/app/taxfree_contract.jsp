@@ -47,11 +47,11 @@
 							</span>
 						</a>
 							<ul class="dropdown-menu">
-								<li><a href="#">个人设定</a></li>
+								<li><a href="settings">个人设定</a></li>
 								<li class="divider"></li>
 								<li><a href="#">用户管理</a></li>
 								<li class="divider"></li>
-								<li><a href="#">退出</a></li>
+								<li><a href="signOut">退出</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -60,115 +60,137 @@
 	</nav>
 
 	<!-- wang start -->
-<div class="container-fluid">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3 col-md-2 collapse in sidebar">
-                <ul id="left-menus" class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#">免税合同作成</a></li>
-                    <li><a href="#" class="abour">劳动合同作成</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 context">
-			   	<div class="row">
-			   		<h2 class="pull-left col-sm-12 col-md-12">劳动合同作成</h2>
+	<div class="container-fluid">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 collapse in sidebar">
+					<ul id="left-menus" class="nav nav-pills nav-stacked">
+						<li class="active"><a href="#">免税合同作成</a></li>
+						<li><a href="#" class="abour">劳动合同作成</a></li>
+					</ul>
+				</div>
+				<div
+					class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 context">
+					<div class="row">
+						<h2 class="pull-left col-sm-12 col-md-12">劳动合同作成</h2>
 						<div class="col-sm-14 col-md-14 context">
-							<div class="form-inline" >
-							  <div class="form-group col-sm-5 col-md-5">
-								    <label for="exampleInputEmail1" class="col-sm-5 col-md-5">项目名称:</label>
-									<input type="email" class="form-control col-sm-4 col-md-4" id="a1">
+							<div class="form-inline">
+								<div class="form-group col-sm-5 col-md-5">
+									<label for="exampleInputEmail1" class="col-sm-5 col-md-5">项目名称:</label>
+									<input type="email" class="form-control col-sm-4 col-md-4"
+										id="a1"  name ="a1">
 								</div>
-								  
-								  <div class="form-group  col-sm-5 col-md-5 col-sm-offset-1 col-md-offset-1 ">
-								    <label for="exampleInputEmail1" class="col-sm-5 col-md-5 ">制作时间:</label>
-								    <input type="email" class="form-control col-sm-4 col-md-4" id="a2">
-								  </div>
+
+								<div
+									class="form-group  col-sm-5 col-md-5 col-sm-offset-1 col-md-offset-1 ">
+									<label for="exampleInputEmail1" class="col-sm-5 col-md-5 ">制作时间:</label>
+									<input type="email" class="form-control col-sm-4 col-md-4"
+										id="a4" name ="a4">
+								</div>
 							</div>
-							
-							<div class="form-inline" >
+
+							<div class="form-inline">
 								<div class="form-group  col-sm-5 col-md-5">
-								    <label for="exampleInputEmail1" class="col-sm-5 col-md-5">委托方（甲方）:</label>
-								    <input type="email" class="form-control col-sm-4 col-md-4" id="a3">
-								  </div>
-								  
-								  <div class="form-group  col-sm-5 col-md-5 col-sm-offset-1 col-md-offset-1">
-								    <label for="exampleInputEmail1" class="col-sm-5 col-md-5">受托方（乙方）:</label>
-								    <input type="email" class="form-control col-sm-4 col-md-4" id="a4">
-								  </div>
+									<label for="exampleInputEmail1" class="col-sm-5 col-md-5">委托方（甲方）:</label>
+									<input type="email" class="form-control col-sm-4 col-md-4"
+										id="a2" name ="a2">
+								</div>
+
+								<div
+									class="form-group  col-sm-5 col-md-5 col-sm-offset-1 col-md-offset-1">
+									<label for="exampleInputEmail1" class="col-sm-5 col-md-5">受托方（乙方）:</label>
+									<input type="email" class="form-control col-sm-4 col-md-4"
+										id="a3" name ="a3">
+								</div>
 							</div>
 						</div>
-						
-						<button class="button button-glow button-border button-rounded button-primary"  style="margin-top:7px;">搜索</button>
-						<button class="button button-glow button-border button-rounded button-primary" style="margin-top:7px;" onclick="f1()">重置</button> 
-			   	</div>
-				
-				<!-- 表格显示 -->
-			     <div class="row">
-			        <div class="col-md-12" style="margin-top:20px;">
-			            <div class="panel panel-info">
-			                <div class="panel-heading">项目名称</div>
-			                    <table id="table" class="table table-striped table-bordered table-hover datatable">
-			                        <thead id="tem" >
-			                        	<tr>
-			                            <th id="studentId">项目名称</th>
-			                            <th id="studentName">甲方</th>
-			                            <th id="courseId">乙方</th>
-			                        </tr>
-			                        </thead>
-			                        <tbody>
-			                        	
-			                        </tbody>
-			                    </table>
-			            </div>
-			        </div>
-			    </div>
-			    
-			    <div class="row">
-			   		<a href="insert/into" class="pull-left button button-glow button-rounded button-raised button-primary button-small">新建</a>
-			   		<a href="#" class="pull-left button button-glow button-rounded button-raised button-caution button-small">删除</a>
-			    </div>
-            </div>
+
+						<button
+							class="button button-glow button-border button-rounded button-primary"
+							style="margin-top: 7px;" onclick="f2()" >搜索</button>
+						<button
+							class="button button-glow button-border button-rounded button-primary"
+							style="margin-top: 7px;" onclick="f1()">重置</button>
+					</div>
+
+					<!-- 表格显示 -->
+					<div class="row">
+						<div class="col-md-12" style="margin-top: 20px;">
+							<div class="panel panel-info">
+								<table id="table"
+									class="table table-striped table-bordered table-hover datatable">
+									<thead>
+										<tr>
+											<th  style="background:#669999">项目名称</th>
+											<th  style="background:#669999">甲方</th>
+											<th  style="background:#669999">乙方</th>
+										</tr>
+									</thead>
+									<tbody id="tem">
+										<tr>
+											<td id="studentId">项目名称</td>
+											<td id="studentName">甲方</td>
+											<td id="courseId">乙方</td>
+										</tr>
+									</tbody>
+									<tbody>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<div class="row">
+							<a href="insert/into"
+								class="pull-left button button-glow button-rounded button-raised button-primary button-small">新建</a>
+							<a href="delete/de"
+								class="pull-left button button-glow button-rounded button-raised button-caution button-small">删除</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
 	<!-- wang end -->
-    
-      <!-- 第2页 -->
-  	<div style="margin-left:52%">
-  		<ul id="previousNext">
-        	<li onclick="previous()" class="prev disabled"><a id="previousPage" href="#">上一页</a></li>
-                  <select id="pageNum"  onchange="search()" class='select' 
-                       	 style="width:50px; margin-right:1px;" aria-controls="DataTables_Table_0" size="1" name="DataTables_Table_0_length">
-                        <option value="1" >1</option>
-	 	             	<option value="2" >2</option>
-                        <option value="3" >3</option>
-                        <option value="4" >4</option>
-                        <option value="5" >5</option>
-                  </select>
-             <li class="next" onclick="next()" ><a id="nextPage" href="#">下一页</a></li>
-      	</ul>
-    </div>
-    
-     <div id="bottomTool" class="row-fluid" style="margin-left:55%;">
-        <div class="span6" style="width:25%; margin-right: 10px;">
-            <div class="dataTables_length" id="DataTables_Table_0_length">
-                <label>
-                    每页
-                    <select id="pageSize" onchange="research()"
-                    aria-controls="DataTables_Table_0" size="1" name="DataTables_Table_0_length">
-                        <option selected="selected" value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                     条记录
-                </label>
-            </div>
-        </div>
-	</div>				
+
+	<!-- 第2页 -->
+	<div style="margin-left: 58%">
+		<ul id="previousNext">
+			<li onclick="previous()" class="prev disabled"><a
+				id="previousPage" href="#">上一页</a></li>
+			<select id="pageNum" onchange="search()" class='select'
+				style="width: 50px; margin-right: 1px;"
+				aria-controls="DataTables_Table_0" size="1"
+				name="DataTables_Table_0_length">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<li class="next" onclick="next()"><a id="nextPage" href="#">下一页</a></li>
+		</ul>
+	</div>
+
+	<div id="bottomTool" class="row-fluid" style="margin-left: 50%; margin-top:-2.2%">
+		<div class="span6" style="width: 25%; margin-right: 10px;">
+			<div class="dataTables_length" id="DataTables_Table_0_length">
+				<label> 每页 <select id="pageSize" onchange="research()"
+					aria-controls="DataTables_Table_0" size="1"
+					name="DataTables_Table_0_length">
+						<option selected="selected" value="10">10</option>
+						<option value="25">25</option>
+						<option value="50">50</option>
+						<option value="100">100</option>
+				</select> 条记录
+				</label>
+			</div>
+		</div>
+	</div>
 
 	<!-- js -->
-	<script src="${pageContext.request.contextPath}/common/jquery/jquery-3.2.1.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/common/jquery/jquery-3.2.1.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/common/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 	<script
