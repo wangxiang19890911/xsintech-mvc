@@ -24,7 +24,7 @@
 	        <ul class="nav navbar-nav">
 	            <li class="dropdown">
 	                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background-color:black;">
-	                    <span class="input-group-addon"><i class="glyphicon glyphicon-user">&nbsp;user</i> </span>
+	                    <span class="input-group-addon"><i class="glyphicon glyphicon-user">&nbsp;${default_userId1 }</i> </span>
 	                </a>
 	                <ul class="dropdown-menu">
 	                    <li><a href="#">系统设定</a></li>
@@ -43,8 +43,8 @@
         <div class="row">
             <div class="col-sm-3 col-md-2 collapse in sidebar">
                 <ul id="left-menus" class="nav nav-pills nav-stacked">
-                    <li><a href="#" class="taxfree">免税合同作成</a></li>
-                    <li class="active"><a href="#">劳动合同作成</a></li>
+                    <li><a href="taxfree	" class="taxfree">免税合同作成</a></li>
+                    <li class="active"><a href="labour">劳动合同作成</a></li>
                 </ul>
             </div>
             <div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2">

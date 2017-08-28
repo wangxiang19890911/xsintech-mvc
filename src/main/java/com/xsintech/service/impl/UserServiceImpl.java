@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.xsintech.dao.UserDao;
 import com.xsintech.model.Contract;
-import com.xsintech.model.UserSave;
+import com.xsintech.model.User;
 import com.xsintech.service.UserService;
 
 @Service("userServiec")
@@ -17,11 +17,11 @@ public class UserServiceImpl implements UserService {
 	@Resource
 	private UserDao userDAO;
 
-	public UserSave checkLogin(String userName, String passWord) {
+	public User checkLogin(String userName, String passWord) {
 		return userDAO.find(userName,passWord);
 	}
 
-	public void save(UserSave u) {
+	public void save(User u) {
 		 userDAO.save(u);
 	}
 	public int findOne(String userName) {
@@ -32,25 +32,12 @@ public class UserServiceImpl implements UserService {
 		return userDAO.find1(userName);
 	}
 
-	public void up(UserSave u) {
+	public void up(User u) {
 		userDAO.up(u);
 	}
 
-	public List<Contract> findfAll(Map map) {
-		return userDAO.findfAll(map);
-	}
-
-	public void insert(Contract c) {
-		userDAO.insert(c);
-	}
-
-	public List<UserSave> findName(String userName) {
-		
+	public List<User> findName(String userName) {	
 		return userDAO.findName(userName);
-	}
-
-	public int findTwo() {
-		return userDAO.findTwo();
 	}
 
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xsintech.dao.UserDao">
-	<select id="find"  resultType="com.xsintech.model.UserSave">
+	<select id="find"  resultType="com.xsintech.model.User">
 		SELECT
 		state as state
 		 FROM IOO_USER
 		 WHERE USERNAME=#{userName} AND PASSWORD=#{passWord}
 	</select>
 	
-	<insert id="save" parameterType="com.xsintech.model.UserSave">
+	<insert id="save" parameterType="com.xsintech.model.User">
 		INSERT INTO IOO_USER VALUES(null,#{userName},#{password},#{gender},#{old},#{photo},#{email},"f",#{name},#{name1});
 	</insert>
 	
@@ -17,7 +17,7 @@
 		 WHERE USERNAME=#{userName} 
 	</select>
 	
-	<update id="up" parameterType="com.xsintech.model.UserSave">
+	<update id="up" parameterType="com.xsintech.model.User">
 		UPDATE IOO_USER SET PASSWORD=#{password},STATE="z" WHERE USERNAME=#{userName}
 	</update>
 	
@@ -25,21 +25,13 @@
 		SELECT STATE FROM IOO_USER
 		 WHERE USERNAME=#{userName} 
 	</select>
-	
-	<select id="findfAll" parameterType="Map" resultType="com.xsintech.model.Contract"  >
-		SELECT NAME,APARTY,BPARTY FROM IOO_CONTRACT limit #{index} ,#{index1}
-	</select>
-	
+	 
 	<insert id="inser" parameterType="com.xsintech.model.Contract">
-			INSERT INTO IOO_CONTRACT VALUES(#{Name},#{Aparty},#{Bparty},#Date{date});
+			INSERT INTO IOO_CONTRACT VALUES(null,#{Name},#{Aparty},#{Bparty},#{Data});
 	</insert>
-	
-	<select id="findName" parameterType="String" resultType="com.xsintech.model.UserSave"  >
-		SELECT NAME,NAME1 FROM IOO_USER WHERE USERNAME
+	 
+	<select id="findName" parameterType="String" resultType="com.xsintech.model.User"  >
+		SELECT NAME,NAME1 FROM IOO_USER WHERE USERNAME=#{username}
 	</select>
-	
-	<select id="findTwo" resultType="Int">
-		SELECT COUNT(*) FORM IOO_CONTRACT
-	</select>
-	
+
 </mapper>

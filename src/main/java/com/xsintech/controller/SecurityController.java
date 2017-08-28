@@ -20,22 +20,45 @@ public class SecurityController {
 //	public String login() {
 //		return "app/taxfree_contract";
 //	}
-
-	@RequestMapping(value="/secure/taxfree")
+	
+	
+	@RequestMapping(value="/taxfree")
 	public String texfree(String page,Model model){
 		
 		return "app/taxfree_contract";
 	}
 	
-//	@RequestMapping(value="/secure/labour")
-//	public String labour() {
-//		return "app/labour_contract";
-//	}
+	@RequestMapping(value="/labour")
+	public String labour() {
+		return "app/labour_contract";
+		
+	}
 	
-	
-	@RequestMapping(value="insert/into")
+	/**
+	 * 插入合同页面跳转
+	 * @return
+	 */
+	@RequestMapping(value="into")
 	public String insertin(){
 		return "app/new-built";
 	}
 	
+	/**
+	 * 删除合同页面跳转
+	 * @return
+	 */
+	@RequestMapping(value="delete/de")
+	public String delete(){
+		return "app/delete_contract";
+	}
+	
+	/**
+	 * 个人设定跳转
+	 * @return
+	 */
+	@RequestMapping(value = "/settings")
+	public String settings(){
+		return"setting";
+	
+	}
 }

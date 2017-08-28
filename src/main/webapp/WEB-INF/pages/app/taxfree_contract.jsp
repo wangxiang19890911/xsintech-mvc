@@ -65,27 +65,27 @@
 			<div class="row">
 				<div class="col-sm-3 col-md-2 collapse in sidebar">
 					<ul id="left-menus" class="nav nav-pills nav-stacked">
-						<li class="active"><a href="#">免税合同作成</a></li>
-						<li><a href="#" class="abour">劳动合同作成</a></li>
+						<li class="active"><a href="taxfree">免税合同作成</a></li>
+						<li><a href="labour" class="abour">劳动合同作成</a></li>
 					</ul>
 				</div>
 				<div
 					class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 context">
-					<div class="row">
+					<div class="row" style="margin-left:0px;">
 						<h2 class="pull-left col-sm-12 col-md-12">劳动合同作成</h2>
 						<div class="col-sm-14 col-md-14 context">
 							<div class="form-inline">
 								<div class="form-group col-sm-5 col-md-5">
 									<label for="exampleInputEmail1" class="col-sm-5 col-md-5">项目名称:</label>
 									<input type="email" class="form-control col-sm-4 col-md-4"
-										id="a1"  name ="a1">
+										id="entryName"  name ="entryName">
 								</div>
 
 								<div
 									class="form-group  col-sm-5 col-md-5 col-sm-offset-1 col-md-offset-1 ">
 									<label for="exampleInputEmail1" class="col-sm-5 col-md-5 ">制作时间:</label>
 									<input type="email" class="form-control col-sm-4 col-md-4"
-										id="a4" name ="a4">
+										id="data1" name ="data1">
 								</div>
 							</div>
 
@@ -93,14 +93,14 @@
 								<div class="form-group  col-sm-5 col-md-5">
 									<label for="exampleInputEmail1" class="col-sm-5 col-md-5">委托方（甲方）:</label>
 									<input type="email" class="form-control col-sm-4 col-md-4"
-										id="a2" name ="a2">
+										id="AParty" name ="AParty">
 								</div>
 
 								<div
 									class="form-group  col-sm-5 col-md-5 col-sm-offset-1 col-md-offset-1">
 									<label for="exampleInputEmail1" class="col-sm-5 col-md-5">受托方（乙方）:</label>
 									<input type="email" class="form-control col-sm-4 col-md-4"
-										id="a3" name ="a3">
+										id="BParty" name ="BParty">
 								</div>
 							</div>
 						</div>
@@ -115,22 +115,24 @@
 
 					<!-- 表格显示 -->
 					<div class="row">
-						<div class="col-md-12" style="margin-top: 20px;">
+						<div class="col-md-12" style="margin-top: 10px;">
 							<div class="panel panel-info">
 								<table id="table"
 									class="table table-striped table-bordered table-hover datatable">
 									<thead>
 										<tr>
+											<th  style="background:#669999" >选择</th>
 											<th  style="background:#669999">项目名称</th>
 											<th  style="background:#669999">甲方</th>
 											<th  style="background:#669999">乙方</th>
 										</tr>
 									</thead>
-									<tbody id="tem">
+									<tbody id="tem" >
 										<tr>
-											<td id="studentId">项目名称</td>
-											<td id="studentName">甲方</td>
-											<td id="courseId">乙方</td>
+											<td><input type="checkbox"  name="check1"  id="check1"/></td>
+											<td id="studentId">教育合同</td>
+											<td id="studentName">样本</td>
+											<td id="courseId">星星</td>
 										</tr>
 									</tbody>
 									<tbody>
@@ -140,11 +142,11 @@
 							</div>
 						</div>
 
-						<div class="row">
-							<a href="insert/into"
+						<div class="row" style="margin-left:15px; margin-top:100px;">
+							<a href="into"
 								class="pull-left button button-glow button-rounded button-raised button-primary button-small">新建</a>
-							<a href="delete/de"
-								class="pull-left button button-glow button-rounded button-raised button-caution button-small">删除</a>
+							<input type="button" value="删除" onclick="che()"
+								class="pull-left button button-glow button-rounded button-raised button-caution button-small"  />
 						</div>
 					</div>
 				</div>
@@ -154,7 +156,7 @@
 	<!-- wang end -->
 
 	<!-- 第2页 -->
-	<div style="margin-left: 58%">
+	<div style="margin-left:84.5%;margin-top:-16.3px;  position: absolute;">
 		<ul id="previousNext">
 			<li onclick="previous()" class="prev disabled"><a
 				id="previousPage" href="#">上一页</a></li>
@@ -172,8 +174,8 @@
 		</ul>
 	</div>
 
-	<div id="bottomTool" class="row-fluid" style="margin-left: 50%; margin-top:-2.2%">
-		<div class="span6" style="width: 25%; margin-right: 10px;">
+	<div id="bottomTool" class="row-fluid" style="margin-left: 77.2%; margin-top:-1.12%;position: absolute" >
+		<div class="span6" style="margin-right: 10px;">
 			<div class="dataTables_length" id="DataTables_Table_0_length">
 				<label> 每页 <select id="pageSize" onchange="research()"
 					aria-controls="DataTables_Table_0" size="1"
