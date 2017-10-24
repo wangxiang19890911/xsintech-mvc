@@ -1,7 +1,9 @@
 package com.xsintech.model;
 
 public class ValidationResult {
+
 	private boolean result;
+
 	private String message;
 
 	public boolean isResult() {
