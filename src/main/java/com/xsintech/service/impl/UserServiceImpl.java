@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.xsintech.dao.UserDao;
 import com.xsintech.service.UserService;
 
-@Service("userServiec")
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Resource
