@@ -10,14 +10,11 @@
 <title>Xsintech - 管理系统</title>
 
 <!-- css -->
-<link
-	href="${pageContext.request.contextPath}/common/bootstrap-3.3.7/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/login.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/common/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet">
 
 </head>
-<body ng-app="myApp" ng-controller="LoginController">
+<body>
 
 	<div class="container vertical-center">
 		<div class="row" >
@@ -25,7 +22,7 @@
 				class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1" >
 				<div class="panel panel-default" >
 					<div class="panel-heading" >
-						<strong class=""> 登陆 </strong>
+						<strong class="">登陆</strong>
 					</div>
 					<p class="text-center"  style="font-size:14px; height:22px;"><span class=text-danger style="font-size:12px"> ${error } </span></p>
 					<div class="panel-body" >
@@ -45,11 +42,11 @@
 								<input type="hidden" id="flag"  name="flag" />
 								<input type="hidden" id="default_userId"  name="default_userId" value="${default_userId }" />
 							</label> 
-							<span class="pull-right"> <input id="login" type="button"
-								class="btn btn-primary" value="登陆" onclick="submitForm()" />
+							<span class="pull-right">
+								<input type="button" class="btn btn-primary" value="登陆" id="btn-login" />
 							</span>
-							 <span class="pull-right"> <input id="login" type="button"
-								class="btn btn-primary" value="注册" onclick="save()" />
+							 <span class="pull-right">
+							 	<input type="button" class="btn btn-primary" value="注册" />
 							</span>
 						</div>
 						</form>
@@ -59,13 +56,13 @@
 		</div>
 	</div>
 
+	<!-- path -->
+	<input type="hidden" id="contextPath" value="${pageContext.request.contextPath}" />
+
 	<!-- js -->
-	<script
-		src="${pageContext.request.contextPath}/common/jquery/jquery-3.2.1.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/common/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-		<script
-		src="${pageContext.request.contextPath}/js/login.js"></script>
-	
+	<script src="${pageContext.request.contextPath}/common/jquery/jquery-3.2.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/common/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/util.js"></script>
+	<script src="${pageContext.request.contextPath}/js/app/login.js"></script>
 </body>
 </html>
